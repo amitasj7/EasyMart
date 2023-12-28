@@ -33,17 +33,21 @@ function Home() {
   }, []);
 
   return (
-    <div>
+    <div className="h-screen">
       {loading ? (
-        <Spinner />
-      ) : posts.length <= 0 ? (
-        <div>No Data Found</div>
-      ) : (
-        <div>
+        <div className="flex justify-center items-center h-full">
+          <Spinner />
+        </div>
+      ) : posts.length > 0 ? (
+        <div className="grid xs:grid-cols-1 sm:grid-cols-2  md:grid-cols-3 lg:grid-cols-4 max-w-6xl mx-auto space-y-10 space-x-5 min-h-[80vh]">
           {posts.map((post) => {
-            <Product key={post.id} post={post} />;
+            // parenthesis = no return keyword use
+            // curly braces = return keyword use compulsory
+            return <Product key={post.id} post={post} />;
           })}
         </div>
+      ) : (
+        <div className="flex justify-center items-center">No Data Found</div>
       )}
     </div>
   );
